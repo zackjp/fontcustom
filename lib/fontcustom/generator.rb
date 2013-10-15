@@ -15,6 +15,7 @@ module Fontcustom
     class_option :bare_css, :type => :boolean, :default => false
     class_option :debug, :type => :boolean, :default => false
     class_option :html, :type => :boolean, :default => false
+    class_option :android, :type => :boolean, :default => false
 
     def self.source_root
       File.dirname(__FILE__)
@@ -52,6 +53,7 @@ module Fontcustom
       css_bare = File.join(@output, 'fontcustom-bare.css')
       css_ie7   = File.join(@output, 'fontcustom-ie7.css')
       test_html = File.join(@output, 'test.html')
+      android = File.join(@output, 'fontcustom-android.xml')
       old_name = if File.exists? css
                    line = IO.readlines(css)[5]                           # font-family: "Example Font";
                    line.scan(/".+"/)[0][1..-2].gsub(/\W/, '-').downcase  # => 'example-font'
@@ -64,6 +66,7 @@ module Fontcustom
       old_files << css_bare if File.exists?(css_bare)
       old_files << css_ie7 if File.exists?(css_ie7)
       old_files << test_html if File.exists?(test_html)
+      old_files << android if File.exists?(android)
       old_files.each {|file| remove_file file }
     end
 
@@ -108,6 +111,7 @@ module Fontcustom
       end
       template('templates/fontcustom-ie7.css', File.join(@output, 'fontcustom-ie7.css'))
       template('templates/test.html', File.join(@output, 'test.html')) if options.html
+      template('templates/fontcustom-android.xml', File.join(@output, 'fontcustom-android.xml')) if options.android
     end
   end
 end
