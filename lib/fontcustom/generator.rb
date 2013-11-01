@@ -52,6 +52,7 @@ module Fontcustom
       css = File.join(@output, 'fontcustom.css')
       css_bare = File.join(@output, 'fontcustom-bare.css')
       css_ie7   = File.join(@output, 'fontcustom-ie7.css')
+      generated_icons_html = File.join(@output, '_generated_icons.html.erb')
       test_html = File.join(@output, 'test.html')
       android = File.join(@output, 'fontcustom-android.xml')
       old_name = if File.exists? css
@@ -65,6 +66,7 @@ module Fontcustom
       old_files << css if File.exists?(css)
       old_files << css_bare if File.exists?(css_bare)
       old_files << css_ie7 if File.exists?(css_ie7)
+      old_files << generated_icons_html if File.exists?(generated_icons_html)
       old_files << test_html if File.exists?(test_html)
       old_files << android if File.exists?(android)
       old_files.each {|file| remove_file file }
@@ -110,6 +112,7 @@ module Fontcustom
         template('templates/fontcustom.css', File.join(@output, 'fontcustom.css'))
       end
       template('templates/fontcustom-ie7.css', File.join(@output, 'fontcustom-ie7.css'))
+      template('templates/_generated_icons.html.erb', File.join(@output, '_generated_icons.html.erb'))
       template('templates/test.html', File.join(@output, 'test.html')) if options.html
       template('templates/fontcustom-android.xml', File.join(@output, 'fontcustom-android.xml')) if options.android
     end
