@@ -90,9 +90,12 @@ module Fontcustom
     end
 
     def show_paths
-      file = Dir[File.join(@output, @name + '*.ttf')].first
-      @path = file.chomp('.ttf')
-
+      files = Dir.glob File.join(@output, @name + '*.ttf')
+      if files.empty?
+        @path = File.join(@output, @name)
+      else
+        @path = files.first.chomp('.ttf')
+      end
       ['woff','ttf','eot','svg'].each do |type|
         say_status(:create, @path + '.' + type)
       end
