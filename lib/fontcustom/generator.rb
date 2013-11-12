@@ -84,7 +84,9 @@ module Fontcustom
       unless options.debug
         cmd += " > /dev/null 2>&1"
       end
-      `#{cmd}`
+      unless system(cmd)
+        raise 'fontforge script has failed, please rerun with --debug to see why.'
+      end
     end
 
     def show_paths
