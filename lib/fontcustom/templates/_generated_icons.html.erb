@@ -1,8 +1,5 @@
-<section class="icons">
-  <h2>Icons</h2>
-  <ul class="layout">
-    <% @classes.each_with_index do |name, index| %>
-    <li><label>icon-<%= name %></label><i class="icon-<%= name %>"></i></li>
-    <% end %>
-  </ul>
-</section>
+<ul class="layout">
+  <% @classes.each_with_index do |name, index| %>
+  <li><label>icon-<%= name %></label><i class="icon-<%= name %>"></i></li>
+  <% end %>
+</ul>
