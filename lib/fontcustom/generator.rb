@@ -84,13 +84,18 @@ module Fontcustom
       unless options.debug
         cmd += " > /dev/null 2>&1"
       end
-      `#{cmd}`
+      unless system(cmd)
+        raise 'fontforge script has failed, please rerun with --debug to see why.'
+      end
     end
 
     def show_paths
-      file = Dir[File.join(@output, @name + '*.ttf')].first
-      @path = file.chomp('.ttf')
-
+      files = Dir.glob File.join(@output, @name + '*.ttf')
+      if files.empty?
+        @path = File.join(@output, @name)
+      else
+        @path = files.first.chomp('.ttf')
+      end
       ['woff','ttf','eot','svg'].each do |type|
         say_status(:create, @path + '.' + type)
       end
