@@ -29,7 +29,7 @@ f = fontforge.font()
 f.encoding = 'UnicodeFull'
 
 m = md5.new()
-cp = 0xf100
+cp = 0xe100
 files = []
 
 KERNING = 15
@@ -50,14 +50,14 @@ for dirname, dirnames, filenames in os.walk(indir):
 				# replace the <switch> </switch> tags with 'nothing'
 				svgtext = svgtext.replace('<switch>', '')
 				svgtext = svgtext.replace('</switch>', '')
-			
+
 				# remove all contents of file so that we can write out the new contents
-				svgfile.truncate()			
+				svgfile.truncate()
 				svgfile.write(svgtext)
 
 				svgfile.close()
 				# end hack
-				
+
 			m.update(filename + str(size) + ';')
 			glyph = f.createChar(cp)
 			glyph.importOutlines(filePath)
