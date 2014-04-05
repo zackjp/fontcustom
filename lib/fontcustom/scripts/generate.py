@@ -29,7 +29,7 @@ f = fontforge.font()
 f.encoding = 'UnicodeFull'
 
 m = md5.new()
-cp = 0xe100
+cp = 0x20
 files = []
 
 KERNING = 15
