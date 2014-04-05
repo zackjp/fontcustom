@@ -23,4 +23,4 @@
 }
 
 <% @classes.each_with_index do |name, index| %>
-.icon-<%= name %>:before { content: "\<%= (32+index).to_s(16) %>"; }<% end %>
+.icon-<%= name %>:before { content: "\<%= (57344+index).to_s(16) %>"; }<% end %>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <% @classes.each_with_index do |name, index| %>
-    <string name="icon_<%= name.gsub(/[\s\-]+/, '_') %>">\u<%= (32+index).to_s(16) %></string>
+    <string name="icon_<%= name.gsub(/[\s\-]+/, '_') %>">\u<%= (57344+index).to_s(16) %></string>
     <% end %>
 </resources>
